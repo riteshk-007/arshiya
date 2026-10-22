@@ -16,9 +16,9 @@ const enquiryTypes = [
     "Other collaboration",
 ];
 
-const fieldLabel = "text-[9px] uppercase tracking-[0.25em] text-ivory/60";
+const fieldLabel = "text-[9px] uppercase tracking-[0.25em] text-ivory/72";
 const fieldInput =
-    "mt-1 w-full border-b border-ivory/25 bg-transparent py-2 text-sm text-ivory outline-none transition-colors placeholder:text-ivory/30 focus:border-gold";
+    "mt-1 w-full border-b border-ivory/25 bg-transparent py-2 text-sm text-ivory outline-none transition-colors placeholder:text-ivory/50 focus:border-gold";
 
 export function FirstStitchPopup({ onClose }: FirstStitchProps) {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -88,7 +88,7 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                         type="button"
                         aria-label="Close sample request"
                         onClick={onClose}
-                        className="absolute right-4 top-4 text-ivory/70 transition-colors hover:text-gold"
+                        className="absolute right-4 top-4 text-ivory/80 transition-colors hover:text-gold"
                     >
                         <X className="h-5 w-5" strokeWidth={1.25} />
                     </button>
@@ -105,7 +105,7 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                     <p className="mt-1 font-display text-xl italic text-gold">
                         Your Vision. Our First Stitch.
                     </p>
-                    <p className="mt-3 text-[13px] font-light leading-relaxed text-ivory/65">
+                    <p className="mt-3 text-[13px] font-light leading-relaxed text-ivory/75">
                         Share a sketch, reference or early idea. We welcome selected introductory
                         sampling enquiries from fashion houses and designers.
                     </p>
@@ -158,7 +158,7 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                                     defaultValue=""
                                     className={`${fieldInput} bg-espresso-deep [color-scheme:dark]`}
                                 >
-                                    <option value="" disabled className="bg-espresso-deep text-ivory/50">
+                                    <option value="" disabled className="bg-espresso-deep text-ivory/65">
                                         Select one
                                     </option>
                                     {enquiryTypes.map((type) => (
@@ -196,7 +196,7 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                                 type="file"
                                 multiple
                                 accept="image/*,.pdf"
-                                className="mt-2 block w-full text-xs text-ivory/60 file:mr-3 file:border file:border-gold/40 file:bg-transparent file:px-3 file:py-2 file:text-[9px] file:uppercase file:tracking-[0.12em] file:text-gold"
+                                className="mt-2 block w-full text-xs text-ivory/72 file:mr-3 file:border file:border-gold/40 file:bg-transparent file:px-3 file:py-2 file:text-[9px] file:uppercase file:tracking-[0.12em] file:text-gold"
                             />
                         </label>
 
@@ -212,7 +212,7 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                         </button>
                     </form>
 
-                    <p className="mt-4 text-center text-[9px] leading-relaxed tracking-[0.1em] text-ivory/40">
+                    <p className="mt-4 text-center text-[9px] leading-relaxed tracking-[0.1em] text-ivory/65">
                         Your email app will open. Please attach your reference files before sending.
                     </p>
                 </div>

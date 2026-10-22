@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
 import { images } from "./images";
 
@@ -18,13 +19,14 @@ export function Collaborations() {
                 </div>
                 <div className="flex items-center px-6 py-16 sm:px-12 lg:col-span-7 lg:px-20 lg:py-24">
                     <Reveal className="mx-auto max-w-2xl">
-                        <p className="text-[10px] uppercase tracking-[0.4em] text-gold">
+                        <Icon name="collaboration" className="h-12 w-12 text-gold" />
+                        <p className="mt-5 text-[10px] uppercase tracking-[0.4em] text-gold">
                             Couture Collaborations
                         </p>
                         <h2 className="mt-5 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                             An Invitation to Create
                         </h2>
-                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-ivory/70">
+                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-ivory/80">
                             <p>
                                 The most extraordinary creations often emerge from the meeting of
                                 different creative perspectives.

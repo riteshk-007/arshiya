@@ -29,7 +29,7 @@ export function SiteFooter() {
                         <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-gold">
                             The Art of Haute Couture Hand Embroidery
                         </p>
-                        <p className="mt-5 max-w-sm text-sm leading-7 text-ivory/60">
+                        <p className="mt-5 max-w-sm text-sm leading-7 text-ivory/72">
                             An independent hand-embroidery atelier collaborating with international
                             fashion houses and designers.
                         </p>
@@ -47,7 +47,7 @@ export function SiteFooter() {
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
-                                        className="text-xs text-ivory/65 transition-colors duration-300 hover:text-gold"
+                                        className="text-xs text-ivory/75 transition-colors duration-300 hover:text-gold"
                                     >
                                         {link.label}
                                     </a>
@@ -62,7 +62,7 @@ export function SiteFooter() {
                         </h2>
                         <a
                             href="mailto:hautecouture@arshiya.uk"
-                            className="mx-auto mt-5 flex w-fit items-center gap-2 text-center text-sm text-ivory/75 transition-colors hover:text-gold sm:mx-0 sm:text-left"
+                            className="mx-auto mt-5 flex w-fit items-center gap-2 text-center text-sm text-ivory/85 transition-colors hover:text-gold sm:mx-0 sm:text-left"
                         >
                             hautecouture@arshiya.uk
                             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -71,7 +71,7 @@ export function SiteFooter() {
                             href="https://www.instagram.com/arshiya.uk/"
                             target="_blank"
                             rel="noreferrer"
-                            className="mx-auto mt-4 flex w-fit items-center gap-2 text-xs text-ivory/60 transition-colors hover:text-gold sm:mx-0"
+                            className="mx-auto mt-4 flex w-fit items-center gap-2 text-xs text-ivory/72 transition-colors hover:text-gold sm:mx-0"
                         >
                             Instagram · @arshiya.uk
                             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -89,17 +89,17 @@ export function SiteFooter() {
             </div>
             <div className="border-t border-gold/15">
                 <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-6 py-5 text-center sm:flex-row sm:text-left lg:px-12">
-                    <p className="text-[9px] uppercase tracking-[0.18em] text-ivory/45">
+                    <p className="text-[9px] uppercase tracking-[0.18em] text-ivory/65">
                         © 2026 House of Arshiya. All rights reserved.
                     </p>
-                    <p className="font-display text-sm italic text-ivory/60">
+                    <p className="font-display text-sm italic text-ivory/72">
                         Where Vision Becomes Artistry.
                     </p>
                     <a
                         href="https://www.instagram.com/arshiya.uk/"
                         target="_blank"
                         rel="noreferrer"
-                        className="text-[9px] uppercase tracking-[0.18em] text-ivory/45 transition-colors hover:text-gold"
+                        className="text-[9px] uppercase tracking-[0.18em] text-ivory/65 transition-colors hover:text-gold"
                     >
                         Instagram · @arshiya.uk
                     </a>

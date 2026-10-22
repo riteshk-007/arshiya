@@ -15,7 +15,7 @@ export function SavoirFaire() {
                         <h2 className="mt-5 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                             Where Ideas Take Form
                         </h2>
-                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-espresso/70">
+                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-espresso/80">
                             <p>
                                 The journey from imagination to creation often begins with
                                 experimentation. Half-scale development offers an opportunity to explore

@@ -13,7 +13,7 @@ export function Philosophy() {
                     <h2 className="mt-5 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                         A Shared Pursuit of Excellence
                     </h2>
-                    <div className="mt-6 space-y-4 text-sm leading-relaxed text-espresso/70">
+                    <div className="mt-6 space-y-4 text-sm leading-relaxed text-espresso/80">
                         <p>
                             Exceptional craftsmanship begins with respect — for the designer&apos;s vision,
                             the materials we work with and the artisans whose hands bring each creation

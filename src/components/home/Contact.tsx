@@ -35,7 +35,7 @@ export function Contact() {
                     <h2 className="mt-4 font-display text-4xl font-light sm:text-5xl">
                         Begin a Conversation
                     </h2>
-                    <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-espresso/65">
+                    <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-espresso/75">
                         Every extraordinary collaboration begins with an introduction. Share a developed
                         concept, an early sketch or an idea waiting to be explored.
                     </p>
@@ -72,7 +72,7 @@ export function Contact() {
                                 <MapPin className="h-4 w-4 text-gold-antique" strokeWidth={1.25} />
                                 Our Atelier
                             </h3>
-                            <address className="mt-3 text-sm not-italic leading-relaxed text-espresso/65">
+                            <address className="mt-3 text-sm not-italic leading-relaxed text-espresso/75">
                                 Sunder Das Building, 2nd Floor
                                 <br />
                                 Sankli Street, Next to E Ward
@@ -83,7 +83,7 @@ export function Contact() {
                             </address>
                             <a
                                 href="tel:+919987227733"
-                                className="mt-4 inline-flex items-center gap-2 text-sm text-espresso/75 hover:text-gold-antique"
+                                className="mt-4 inline-flex items-center gap-2 text-sm text-espresso/85 hover:text-gold-antique"
                             >
                                 <Phone className="h-4 w-4" strokeWidth={1.25} />
                                 +91 99872 27733 · Telephone / WhatsApp
@@ -93,7 +93,7 @@ export function Contact() {
                                     <h4 className="text-[10px] uppercase tracking-[0.25em] text-gold-antique">
                                         New York, United States
                                     </h4>
-                                    <address className="mt-3 text-xs not-italic leading-relaxed text-espresso/65">
+                                    <address className="mt-3 text-xs not-italic leading-relaxed text-espresso/75">
                                         61/20 Grand Central Parkway
                                         <br />
                                         Apartment C704
@@ -102,7 +102,7 @@ export function Contact() {
                                     </address>
                                     <a
                                         href="tel:+19174387208"
-                                        className="mt-2 inline-block text-xs text-espresso/75 hover:text-gold-antique"
+                                        className="mt-2 inline-block text-xs text-espresso/85 hover:text-gold-antique"
                                     >
                                         +1 917 438 7208
                                     </a>
@@ -111,7 +111,7 @@ export function Contact() {
                                     <h4 className="text-[10px] uppercase tracking-[0.25em] text-gold-antique">
                                         London, United Kingdom
                                     </h4>
-                                    <address className="mt-3 text-xs not-italic leading-relaxed text-espresso/65">
+                                    <address className="mt-3 text-xs not-italic leading-relaxed text-espresso/75">
                                         Wyman Lettings
                                         <br />
                                         532 High Street North
@@ -124,7 +124,7 @@ export function Contact() {
                                 href="https://www.instagram.com/arshiya.uk/"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="mt-5 inline-block text-xs tracking-[0.12em] text-espresso/70 hover:text-gold-antique"
+                                className="mt-5 inline-block text-xs tracking-[0.12em] text-espresso/80 hover:text-gold-antique"
                             >
                                 Instagram · @arshiya.uk
                             </a>
@@ -141,7 +141,7 @@ export function Contact() {
                             </div>
 
                             <label className="block">
-                                <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/65">
+                                <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/75">
                                     Nature of enquiry
                                 </span>
                                 <select
@@ -150,7 +150,7 @@ export function Contact() {
                                     required
                                     className="mt-2 w-full border-b border-gold-antique/40 bg-transparent py-3 text-sm text-espresso outline-none [color-scheme:light] focus:border-gold-antique"
                                 >
-                                    <option value="" disabled className="bg-ivory text-espresso/50">
+                                    <option value="" disabled className="bg-ivory text-espresso/65">
                                         Select an enquiry type
                                     </option>
                                     {[
@@ -169,14 +169,14 @@ export function Contact() {
                             </label>
 
                             <label className="block">
-                                <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/65">
+                                <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/75">
                                     Project description
                                 </span>
                                 <textarea
                                     name="description"
                                     rows={4}
                                     required
-                                    className="mt-2 w-full resize-y border-b border-gold-antique/40 bg-transparent py-3 text-sm outline-none placeholder:text-espresso/35 focus:border-gold-antique"
+                                    className="mt-2 w-full resize-y border-b border-gold-antique/40 bg-transparent py-3 text-sm outline-none placeholder:text-espresso/50 focus:border-gold-antique"
                                     placeholder="Tell us about your vision, materials or creative direction"
                                 />
                             </label>
@@ -184,7 +184,7 @@ export function Contact() {
                             <div className="grid gap-5 sm:grid-cols-2">
                                 <ContactInput label="Estimated project timeline" name="timeline" placeholder="e.g. Autumn 2026" />
                                 <label className="block">
-                                    <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/65">
+                                    <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/75">
                                         Upload design references
                                     </span>
                                     <input
@@ -192,7 +192,7 @@ export function Contact() {
                                         type="file"
                                         multiple
                                         accept="image/*,.pdf"
-                                        className="mt-2 block w-full text-xs text-espresso/65 file:mr-3 file:border file:border-gold-antique/50 file:bg-transparent file:px-3 file:py-2 file:text-[9px] file:uppercase file:tracking-[0.1em] file:text-espresso"
+                                        className="mt-2 block w-full text-xs text-espresso/75 file:mr-3 file:border file:border-gold-antique/50 file:bg-transparent file:px-3 file:py-2 file:text-[9px] file:uppercase file:tracking-[0.1em] file:text-espresso"
                                     />
                                 </label>
                             </div>
@@ -204,7 +204,7 @@ export function Contact() {
                                 Submit Your Enquiry
                                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.25} />
                             </button>
-                            <p className="text-xs leading-relaxed text-espresso/55">
+                            <p className="text-xs leading-relaxed text-espresso/70">
                                 We aim to respond to enquiries within 12 hours. For urgent enquiries, please
                                 contact our atelier via WhatsApp. Your email app will open with the enquiry
                                 details; attach any selected design references before sending.
@@ -236,14 +236,14 @@ function ContactInput({
 }: ContactInputProps) {
     return (
         <label className="block">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/65">{label}</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/75">{label}</span>
             <input
                 name={name}
                 type={type}
                 required={required}
                 autoComplete={autoComplete}
                 placeholder={placeholder}
-                className="mt-2 w-full border-b border-gold-antique/40 bg-transparent py-3 text-sm outline-none placeholder:text-espresso/35 focus:border-gold-antique"
+                className="mt-2 w-full border-b border-gold-antique/40 bg-transparent py-3 text-sm outline-none placeholder:text-espresso/50 focus:border-gold-antique"
             />
         </label>
     );

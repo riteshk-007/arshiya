@@ -27,7 +27,7 @@ export function Atelier() {
                         <h2 className="mt-5 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                             The Hands Behind the Art
                         </h2>
-                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-ivory/70">
+                        <div className="mt-6 space-y-4 text-sm leading-relaxed text-ivory/80">
                             <p>
                                 Behind every extraordinary embroidered creation lies the skill, patience
                                 and dedication of the artisan.

@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Icon, type IconName } from "./Icon";
 import { Reveal } from "./Reveal";
 import { images } from "./images";
+
+const iconFor: Record<string, IconName> = {
+    "haute-couture": "couture",
+    bridal: "bridal",
+    accessories: "accessories",
+    "half-scale": "half-scale",
+};
 
 const offerings = [
     {
@@ -102,13 +110,17 @@ export function Offerings() {
 
                             <div className="flex items-center px-6 py-16 sm:px-12 lg:px-16 lg:py-24">
                                 <Reveal className="mx-auto max-w-xl">
-                                    <p className={`text-[10px] uppercase tracking-[0.4em] ${isDark ? "text-gold" : "text-gold-antique"}`}>
+                                    <Icon
+                                        name={iconFor[offering.id]}
+                                        className={`h-11 w-11 ${isDark ? "text-gold" : "text-gold-antique"}`}
+                                    />
+                                    <p className={`mt-5 text-[10px] uppercase tracking-[0.4em] ${isDark ? "text-gold" : "text-gold-antique"}`}>
                                         {offering.eyebrow}
                                     </p>
                                     <h2 className="mt-5 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                                         {offering.title}
                                     </h2>
-                                    <div className={`mt-7 space-y-4 text-sm leading-relaxed ${isDark ? "text-ivory/70" : "text-espresso/70"}`}>
+                                    <div className={`mt-7 space-y-4 text-sm leading-relaxed ${isDark ? "text-ivory/80" : "text-espresso/80"}`}>
                                         {offering.paragraphs.map((paragraph) => (
                                             <p key={paragraph}>{paragraph}</p>
                                         ))}

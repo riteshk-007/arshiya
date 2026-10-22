@@ -1,11 +1,21 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Icon, type IconName } from "./Icon";
 import { Reveal } from "./Reveal";
 import { images } from "./images";
 
-const items = [
+const items: {
+    num: string;
+    title: string;
+    href: string;
+    image: string;
+    alt: string;
+    summary: string;
+    icon: IconName;
+}[] = [
     {
         num: "01",
+        icon: "couture",
         title: "Haute Couture",
         href: "#haute-couture",
         image: images.collectionCouture,
@@ -14,6 +24,7 @@ const items = [
     },
     {
         num: "02",
+        icon: "bridal",
         title: "Bridal Embroidery",
         href: "#bridal",
         image: images.collectionBridal,
@@ -22,6 +33,7 @@ const items = [
     },
     {
         num: "03",
+        icon: "accessories",
         title: "Couture Accessories",
         href: "#accessories",
         image: images.collectionLibrary,
@@ -30,6 +42,7 @@ const items = [
     },
     {
         num: "04",
+        icon: "half-scale",
         title: "Half-Scale Exploration",
         href: "#half-scale",
         image: images.collectionBespoke,
@@ -49,7 +62,7 @@ export function Collections() {
                             A world of <span className="italic text-gold">embroidery.</span>
                         </h2>
                     </div>
-                    <p className="max-w-sm text-sm font-light leading-[1.85] text-ivory/60">
+                    <p className="max-w-sm text-sm font-light leading-[1.85] text-ivory/72">
                         Rooted in Indian embroidery traditions, each discipline is guided by the
                         designer&apos;s vision and crafted by hand.
                     </p>
@@ -72,13 +85,14 @@ export function Collections() {
                                 <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/95 via-espresso-deep/10 to-espresso-deep/25" />
                                 <div className="absolute inset-x-0 top-0 flex items-start justify-between p-4 sm:p-6">
                                     <div>
-                                        <p className="text-[10px] tracking-[0.25em] text-ivory/80">{item.num}</p>
+                                        <Icon name={item.icon} className="h-8 w-8 text-gold sm:h-9 sm:w-9" />
+                                        <p className="mt-3 text-[10px] tracking-[0.25em] text-ivory/88">{item.num}</p>
                                         <h3 className="mt-2 max-w-[11rem] text-[10px] uppercase leading-[1.5] tracking-[0.22em] text-ivory sm:text-xs">
                                             {item.title}
                                         </h3>
                                     </div>
                                     <ArrowUpRight
-                                        className="h-4 w-4 shrink-0 text-ivory/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold"
+                                        className="h-4 w-4 shrink-0 text-ivory/80 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold"
                                         strokeWidth={1.25}
                                     />
                                 </div>

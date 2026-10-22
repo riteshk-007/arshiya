@@ -66,7 +66,7 @@ export function SiteHeader() {
                             <a
                                 key={item.label}
                                 href={item.href}
-                                className="group relative whitespace-nowrap py-3 text-[9px] font-medium uppercase tracking-[0.12em] text-ivory/80 transition-colors hover:text-gold 2xl:text-[10px] 2xl:tracking-[0.15em]"
+                                className="group relative whitespace-nowrap py-3 text-[9px] font-medium uppercase tracking-[0.12em] text-ivory/88 transition-colors hover:text-gold 2xl:text-[10px] 2xl:tracking-[0.15em]"
                             >
                                 {item.label}
                                 <span className="absolute bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -121,7 +121,7 @@ export function SiteHeader() {
                                 type="button"
                                 aria-label="Close navigation menu"
                                 onClick={() => setMenuOpen(false)}
-                                className="text-ivory/75 transition-colors hover:text-gold"
+                                className="text-ivory/85 transition-colors hover:text-gold"
                             >
                                 <X className="h-6 w-6" strokeWidth={1.25} />
                             </button>

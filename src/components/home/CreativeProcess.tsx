@@ -1,4 +1,7 @@
+import { Icon, type IconName } from "./Icon";
 import { Reveal } from "./Reveal";
+
+const stepIcons: IconName[] = ["sketch", "materials", "sampling", "refine", "execution", "finishing"];
 
 const steps = [
     {
@@ -50,7 +53,7 @@ export function CreativeProcess() {
                     <h3 className="mt-4 font-display text-4xl font-light sm:text-5xl">
                         Our Creative Process
                     </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-espresso/65">
+                    <p className="mt-4 text-sm leading-relaxed text-espresso/75">
                         Exceptional embroidery is the result of thoughtful collaboration, technical
                         understanding and meticulous execution. From the first conversation to the final
                         stitch, every stage is developed with care.
@@ -58,16 +61,17 @@ export function CreativeProcess() {
                 </Reveal>
 
                 <ol className="grid gap-x-12 gap-y-9 border-t border-gold-antique/30 pt-9 sm:grid-cols-2 lg:grid-cols-3">
-                    {steps.map((step) => (
+                    {steps.map((step, index) => (
                         <Reveal key={step.number}>
                             <li>
-                                <p className="text-[10px] tracking-[0.3em] text-gold-antique">
+                                <Icon name={stepIcons[index]} className="h-10 w-10 text-gold-antique" />
+                                <p className="mt-4 text-[10px] tracking-[0.3em] text-gold-antique">
                                     {step.number}
                                 </p>
                                 <h4 className="mt-3 font-display text-2xl font-medium">
                                     {step.title}
                                 </h4>
-                                <p className="mt-3 text-sm leading-relaxed text-espresso/65">
+                                <p className="mt-3 text-sm leading-relaxed text-espresso/75">
                                     {step.description}
                                 </p>
                             </li>
@@ -75,7 +79,7 @@ export function CreativeProcess() {
                     ))}
                 </ol>
 
-                <p className="mt-12 border-t border-gold-antique/30 pt-6 text-xs leading-relaxed text-espresso/60">
+                <p className="mt-12 border-t border-gold-antique/30 pt-6 text-xs leading-relaxed text-espresso/72">
                     Throughout the process, we respect the confidentiality, creative ownership and
                     individuality of every designer&apos;s work.
                 </p>

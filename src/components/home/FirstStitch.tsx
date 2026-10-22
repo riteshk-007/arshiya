@@ -3,11 +3,18 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { Icon, type IconName } from "./Icon";
 import { Reveal } from "./Reveal";
 import { FirstStitchPopup } from "./FirstStitchPopup";
 import { images } from "./images";
 
-const stages = ["Sketch", "Explore", "Develop", "Refine", "Create"];
+const stages: { label: string; icon: IconName }[] = [
+    { label: "Sketch", icon: "sketch" },
+    { label: "Explore", icon: "materials" },
+    { label: "Develop", icon: "sampling" },
+    { label: "Refine", icon: "refine" },
+    { label: "Create", icon: "execution" },
+];
 
 export function FirstStitch() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,7 +47,7 @@ export function FirstStitch() {
                                 Every Extraordinary Creation Begins with an{" "}
                                 <span className="italic text-gold-antique">Idea.</span>
                             </h2>
-                            <div className="mt-7 space-y-4 text-sm font-light leading-[1.85] text-espresso/70">
+                            <div className="mt-7 space-y-4 text-sm font-light leading-[1.85] text-espresso/80">
                                 <p>
                                     A sketch. A fragment of inspiration. An unexpected material. A vision
                                     waiting to be realised.
@@ -54,14 +61,14 @@ export function FirstStitch() {
                                 </p>
                             </div>
 
-                            <ol className="mt-8 flex flex-wrap gap-x-7 gap-y-3 border-y border-gold-antique/30 py-5">
-                                {stages.map((stage, index) => (
+                            <ol className="mt-8 grid grid-cols-5 gap-2 border-y border-gold-antique/30 py-5">
+                                {stages.map((stage) => (
                                     <li
-                                        key={stage}
-                                        className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-espresso/65"
+                                        key={stage.label}
+                                        className="flex flex-col items-center gap-2 text-center text-[8px] uppercase tracking-[0.12em] text-espresso/85 min-[400px]:text-[9px] sm:text-[10px] sm:tracking-[0.2em]"
                                     >
-                                        <span className="text-gold-antique">0{index + 1}</span>
-                                        {stage}
+                                        <Icon name={stage.icon} className="h-7 w-7 text-gold-antique sm:h-8 sm:w-8" />
+                                        {stage.label}
                                     </li>
                                 ))}
                             </ol>
@@ -69,7 +76,7 @@ export function FirstStitch() {
                             <p className="mt-7 font-display text-2xl italic text-gold-antique">
                                 Your Vision. Our First Stitch.
                             </p>
-                            <p className="mt-3 text-xs font-light leading-relaxed text-espresso/55">
+                            <p className="mt-3 text-xs font-light leading-relaxed text-espresso/70">
                                 Complimentary introductory samples may be considered following a review of
                                 the proposed design, complexity and project requirements.
                             </p>

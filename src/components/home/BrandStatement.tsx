@@ -23,7 +23,7 @@ export function BrandStatement() {
                     <h2 className="mt-5 font-display text-4xl font-light leading-[1.12] sm:text-5xl">
                         Craft rooted in heritage. Made for what comes next.
                     </h2>
-                    <div className="mt-7 space-y-4 text-sm leading-relaxed text-espresso/70">
+                    <div className="mt-7 space-y-4 text-sm leading-relaxed text-espresso/80">
                         <p>
                             Rooted in the rich traditions of Indian embroidery, House of Arshiya brings
                             together artisanal expertise, contemporary innovation and a profound appreciation

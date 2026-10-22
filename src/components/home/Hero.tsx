@@ -131,7 +131,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.85, ease }}
-                        className="mt-7 max-w-md text-sm font-light leading-[1.85] text-ivory/75"
+                        className="mt-7 max-w-md text-sm font-light leading-[1.85] text-ivory/85"
                     >
                         An independent hand-embroidery atelier collaborating with international fashion
                         houses and designers to transform creative visions into extraordinary
@@ -184,7 +184,7 @@ export function Hero() {
             <a
                 href="#our-craft"
                 aria-label="Scroll to our craft"
-                className="absolute bottom-8 left-6 hidden flex-col items-start gap-4 text-[9px] uppercase tracking-[0.4em] text-ivory/55 transition-colors hover:text-gold sm:flex lg:left-14"
+                className="absolute bottom-8 left-6 hidden flex-col items-start gap-4 text-[9px] uppercase tracking-[0.4em] text-ivory/70 transition-colors hover:text-gold sm:flex lg:left-14"
             >
                 Scroll
                 <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40">
