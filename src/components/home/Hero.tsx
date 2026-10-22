@@ -25,6 +25,7 @@ const slides = [
 ];
 
 const SLIDE_INTERVAL_MS = 6500;
+const POPUP_SEEN_KEY = "arshiya-first-stitch-popup-seen";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
@@ -44,14 +45,20 @@ export function Hero() {
             return;
         }
 
-        const popupSeen = window.sessionStorage.getItem("arshiya-swatch-popup-seen");
+        // Only first-time visitors get the popup; storage can be blocked, so fail quietly.
+        let popupSeen = false;
+        try {
+            popupSeen = window.localStorage.getItem(POPUP_SEEN_KEY) !== null;
+        } catch {}
 
         if (popupSeen) {
             return;
         }
 
         const timeoutId = window.setTimeout(() => {
-            window.sessionStorage.setItem("arshiya-swatch-popup-seen", "true");
+            try {
+                window.localStorage.setItem(POPUP_SEEN_KEY, String(Date.now()));
+            } catch {}
             setIsSwatchPopupOpen(true);
         }, 5000);
 
