@@ -148,15 +148,23 @@ export function Contact() {
                                     name="enquiry"
                                     defaultValue=""
                                     required
-                                    className="mt-2 w-full border-b border-gold-antique/40 bg-transparent py-3 text-sm outline-none focus:border-gold-antique"
+                                    className="mt-2 w-full border-b border-gold-antique/40 bg-transparent py-3 text-sm text-espresso outline-none [color-scheme:light] focus:border-gold-antique"
                                 >
-                                    <option value="" disabled>Select an enquiry type</option>
-                                    <option>Haute couture embroidery</option>
-                                    <option>Bridal embroidery</option>
-                                    <option>Couture accessories</option>
-                                    <option>Sampling and development</option>
-                                    <option>Half-scale exploration</option>
-                                    <option>Other collaboration</option>
+                                    <option value="" disabled className="bg-ivory text-espresso/50">
+                                        Select an enquiry type
+                                    </option>
+                                    {[
+                                        "Haute couture embroidery",
+                                        "Bridal embroidery",
+                                        "Couture accessories",
+                                        "Sampling and development",
+                                        "Half-scale exploration",
+                                        "Other collaboration",
+                                    ].map((type) => (
+                                        <option key={type} className="bg-ivory text-espresso">
+                                            {type}
+                                        </option>
+                                    ))}
                                 </select>
                             </label>
 

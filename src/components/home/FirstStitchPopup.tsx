@@ -8,6 +8,14 @@ type FirstStitchProps = {
     onClose: () => void;
 };
 
+const enquiryTypes = [
+    "Haute couture embroidery",
+    "Bridal embroidery",
+    "Couture accessories",
+    "Sampling and development",
+    "Other collaboration",
+];
+
 const fieldLabel = "text-[9px] uppercase tracking-[0.25em] text-ivory/60";
 const fieldInput =
     "mt-1 w-full border-b border-ivory/25 bg-transparent py-2 text-sm text-ivory outline-none transition-colors placeholder:text-ivory/30 focus:border-gold";
@@ -148,14 +156,16 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                                 <select
                                     name="enquiry"
                                     defaultValue=""
-                                    className={`${fieldInput} bg-espresso-deep`}
+                                    className={`${fieldInput} bg-espresso-deep [color-scheme:dark]`}
                                 >
-                                    <option value="" disabled>Select one</option>
-                                    <option>Haute couture embroidery</option>
-                                    <option>Bridal embroidery</option>
-                                    <option>Couture accessories</option>
-                                    <option>Sampling and development</option>
-                                    <option>Other collaboration</option>
+                                    <option value="" disabled className="bg-espresso-deep text-ivory/50">
+                                        Select one
+                                    </option>
+                                    {enquiryTypes.map((type) => (
+                                        <option key={type} className="bg-espresso-deep text-ivory">
+                                            {type}
+                                        </option>
+                                    ))}
                                 </select>
                             </label>
                             <label className="block">
