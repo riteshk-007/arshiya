@@ -15,10 +15,27 @@ const sansFont = Inter({
   weight: ["300", "400", "500", "600"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arshiya.uk";
+const siteTitle = "House of Arshiya | Haute Couture Hand Embroidery";
+const siteDescription =
+  "An independent Mumbai hand-embroidery atelier collaborating with international fashion houses and designers.";
+
 export const metadata: Metadata = {
-  title: "House of Arshiya | Haute Couture Hand Embroidery",
-  description:
-    "An independent Mumbai hand-embroidery atelier collaborating with international fashion houses and designers.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName: "House of Arshiya",
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
