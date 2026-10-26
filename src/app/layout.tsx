@@ -18,7 +18,7 @@ const sansFont = Inter({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arshiya.uk";
 const siteTitle = "House of Arshiya | Haute Couture Hand Embroidery";
 const siteDescription =
-  "An independent Mumbai hand-embroidery atelier collaborating with international fashion houses and designers.";
+  "An independent hand-embroidery atelier collaborating with international fashion houses and designers.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

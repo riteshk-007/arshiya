@@ -44,33 +44,32 @@ const steps = [
 
 export function CreativeProcess() {
     return (
-        <section id="creative-process" className="scroll-mt-24 bg-cream px-6 py-20 text-espresso sm:py-24 lg:px-12">
+        <section id="creative-process" className="scroll-mt-24 bg-cream px-6 py-12 text-espresso sm:py-16 lg:px-12">
             <div className="mx-auto max-w-6xl">
-                <Reveal className="mb-12 max-w-2xl">
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-gold-antique">
-                        Within the Atelier
+                <Reveal className="mb-8 max-w-2xl">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-[#7a6347]">
+                        From Vision to Creation
                     </p>
-                    <h3 className="mt-4 font-display text-4xl font-light sm:text-5xl">
+                    <h2 className="mt-3 font-display text-3xl font-light sm:text-4xl">
                         Our Creative Process
-                    </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-espresso/75">
-                        Exceptional embroidery is the result of thoughtful collaboration, technical
-                        understanding and meticulous execution. From the first conversation to the final
-                        stitch, every stage is developed with care.
-                    </p>
+                    </h2>
                 </Reveal>
 
-                <ol className="grid gap-x-12 gap-y-9 border-t border-gold-antique/30 pt-9 sm:grid-cols-2 lg:grid-cols-3">
+                <ol className="grid gap-x-10 gap-y-7 border-t border-gold-antique/30 pt-7 sm:grid-cols-2 lg:grid-cols-3">
                     {steps.map((step, index) => (
                         <Reveal key={step.number}>
                             <li>
-                                <Icon name={stepIcons[index]} className="h-10 w-10 text-gold-antique" />
-                                <p className="mt-4 text-[10px] tracking-[0.3em] text-gold-antique">
-                                    {step.number}
-                                </p>
-                                <h4 className="mt-3 font-display text-2xl font-medium">
-                                    {step.title}
-                                </h4>
+                                <div className="flex items-center gap-4">
+                                    <Icon name={stepIcons[index]} className="h-9 w-9 text-gold-antique" />
+                                    <div>
+                                        <p className="text-[10px] tracking-[0.3em] text-[#7a6347]">
+                                            {step.number}
+                                        </p>
+                                        <h3 className="font-display text-xl font-medium leading-tight sm:text-2xl">
+                                            {step.title}
+                                        </h3>
+                                    </div>
+                                </div>
                                 <p className="mt-3 text-sm leading-relaxed text-espresso/75">
                                     {step.description}
                                 </p>
@@ -79,7 +78,7 @@ export function CreativeProcess() {
                     ))}
                 </ol>
 
-                <p className="mt-12 border-t border-gold-antique/30 pt-6 text-xs leading-relaxed text-espresso/72">
+                <p className="mt-8 border-t border-gold-antique/30 pt-5 text-xs leading-relaxed text-espresso/72">
                     Throughout the process, we respect the confidentiality, creative ownership and
                     individuality of every designer&apos;s work.
                 </p>

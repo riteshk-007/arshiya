@@ -67,7 +67,7 @@ export function Hero() {
 
     return (
         <>
-        <section id="top" className="relative min-h-svh overflow-hidden bg-espresso-deep">
+        <section id="top" className="relative min-h-[88svh] overflow-hidden bg-espresso-deep">
             {/* Carousel: embroidery on the right, fading into the text side */}
             <div className="absolute inset-y-0 right-0 w-full overflow-hidden lg:w-[62%] lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_22%,black_48%)]">
                 <AnimatePresence initial={false}>
@@ -93,7 +93,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/70 via-transparent to-espresso-deep/40" />
             </div>
 
-            <div className="relative mx-auto flex min-h-svh max-w-[1600px] items-center px-6 pb-28 pt-32 sm:pb-32 sm:pt-36 lg:px-14">
+            <div className="relative mx-auto flex min-h-[88svh] max-w-[1600px] items-center px-6 pb-24 pt-36 sm:pb-28 sm:pt-40 lg:px-14">
                 <div className="max-w-xl">
                     <motion.p
                         initial={{ opacity: 0, y: 16 }}
@@ -102,6 +102,14 @@ export function Hero() {
                         className="text-[10px] uppercase tracking-[0.5em] text-gold"
                     >
                         House of Arshiya
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.38, ease }}
+                        className="mt-3 whitespace-nowrap font-display text-[13px] uppercase tracking-[0.2em] text-ivory/90 min-[400px]:text-base min-[400px]:tracking-[0.28em] sm:text-lg sm:tracking-[0.34em]"
+                    >
+                        Fashion is a work of art
                     </motion.p>
 
                     <motion.h1
@@ -115,17 +123,14 @@ export function Hero() {
                         Becomes <span className="italic text-gold">Artistry.</span>
                     </motion.h1>
 
-                    <motion.div
+                    <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.7, ease }}
-                        className="mt-8 flex items-center gap-3 sm:gap-4"
+                        className="mt-8 text-[9px] uppercase tracking-[0.25em] text-gold sm:text-[10px] sm:tracking-[0.3em]"
                     >
-                        <span className="h-px w-12 bg-gold/70" />
-                        <span className="text-[9px] uppercase tracking-[0.25em] text-gold sm:text-[10px] sm:tracking-[0.3em]">
-                            The Art of Haute Couture Hand Embroidery
-                        </span>
-                    </motion.div>
+                        The Art of Haute Couture Hand Embroidery
+                    </motion.p>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -144,8 +149,9 @@ export function Hero() {
                         transition={{ duration: 1, delay: 1, ease }}
                         className="mt-10"
                     >
-                        <a
-                            href="#contact"
+                        <button
+                            type="button"
+                            onClick={() => setIsSwatchPopupOpen(true)}
                             className="group inline-flex items-center gap-4 border border-gold/60 px-8 py-4 text-[10px] uppercase tracking-[0.3em] text-ivory transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-espresso-deep"
                         >
                             Begin a Collaboration
@@ -153,7 +159,7 @@ export function Hero() {
                                 className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1.5"
                                 strokeWidth={1.25}
                             />
-                        </a>
+                        </button>
                     </motion.div>
                 </div>
             </div>

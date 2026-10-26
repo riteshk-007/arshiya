@@ -1,14 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { EnquireButton } from "./EnquireButton";
+import { categories } from "./categories";
 
 const footerLinks = [
-    { label: "Haute Couture", href: "#haute-couture" },
-    { label: "Bridal Embroidery", href: "#bridal" },
-    { label: "Couture Accessories", href: "#accessories" },
-    { label: "Our Atelier", href: "#our-atelier" },
-    { label: "The First Stitch", href: "#first-stitch" },
-    { label: "Collaborations", href: "#collaborations" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
 ];
 
 export function SiteFooter() {
@@ -17,7 +15,7 @@ export function SiteFooter() {
             <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
                 <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.8fr_1fr] lg:gap-16">
                     <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-                        <a href="#top" aria-label="House of Arshiya home" className="inline-block">
+                        <Link href="/" aria-label="House of Arshiya home" className="inline-block">
                             <Image
                                 src="/arshiya-logo.png"
                                 alt="Arshiya"
@@ -25,16 +23,13 @@ export function SiteFooter() {
                                 height={99}
                                 className="h-[100px] w-auto object-contain sm:h-[112px]"
                             />
-                        </a>
+                        </Link>
                         <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-gold">
                             The Art of Haute Couture Hand Embroidery
                         </p>
                         <p className="mt-5 max-w-sm text-sm leading-7 text-ivory/72">
                             An independent hand-embroidery atelier collaborating with international
                             fashion houses and designers.
-                        </p>
-                        <p className="mt-5 font-display text-lg italic text-gold/90">
-                            Mumbai | International Collaborations
                         </p>
                     </div>
 
@@ -45,12 +40,12 @@ export function SiteFooter() {
                         <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-1">
                             {footerLinks.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-xs text-ivory/75 transition-colors duration-300 hover:text-gold"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -76,13 +71,10 @@ export function SiteFooter() {
                             Instagram · @arshiya.uk
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </a>
-                        <a
-                            href="#contact"
-                            className="mx-auto mt-8 inline-flex min-h-11 items-center justify-center gap-3 border border-gold/45 px-5 text-[9px] uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-espresso-deep sm:mx-0"
-                        >
+                        <EnquireButton className="mx-auto mt-8 inline-flex min-h-11 items-center justify-center gap-3 border border-gold/45 px-5 text-[9px] uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-espresso-deep sm:mx-0">
                             Contact the Atelier
                             <ArrowUpRight className="h-3.5 w-3.5" />
-                        </a>
+                        </EnquireButton>
                     </div>
                 </div>
 
