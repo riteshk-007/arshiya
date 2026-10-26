@@ -249,7 +249,7 @@ export function PostEditor({ post, siteUrl, categories, storageReady }: PostEdit
                                     />
                                 </div>
                                 <p className="text-xs text-muted-foreground">
-                                    The article's page link, made from the title automatically. Keep it short, e.g. <span className="font-medium">hand-embroidery-vs-machine</span>. Changing it after publishing breaks old links.
+                                    The article&apos;s page link, made from the title automatically. Keep it short, e.g. <span className="font-medium">hand-embroidery-vs-machine</span>. Changing it after publishing breaks old links.
                                 </p>
                             </div>
 
