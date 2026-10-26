@@ -2,6 +2,7 @@ import { EntryPopup } from "@/components/home/EntryPopup";
 import { SiteFooter } from "@/components/home/SiteFooter";
 import { SiteHeader } from "@/components/home/SiteHeader";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getSiteCategories } from "@/lib/site-categories";
 import { SITE_DESCRIPTION, SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 const siteStructuredData = {
@@ -29,11 +30,12 @@ const siteStructuredData = {
 };
 
 /** Public website shell. The admin area has its own layout and never shows this. */
-export default function SiteLayout({ children }: { children: React.ReactNode }) {
+export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  const categories = await getSiteCategories();
   return (
     <>
       <JsonLd data={siteStructuredData} />
-      <SiteHeader />
+      <SiteHeader categories={categories.map(({ slug, navLabel }) => ({ slug, navLabel }))} />
       {children}
       <SiteFooter />
       <EntryPopup />

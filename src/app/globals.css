@@ -166,6 +166,30 @@
   }
 }
 
+/* Category page details (dark background). */
+.category-prose {
+  --tw-prose-body: color-mix(in oklab, var(--ivory) 80%, transparent);
+  --tw-prose-headings: var(--ivory);
+  --tw-prose-links: var(--gold);
+  --tw-prose-bold: var(--ivory);
+  --tw-prose-quotes: var(--ivory);
+  --tw-prose-quote-borders: var(--gold);
+  --tw-prose-hr: color-mix(in oklab, var(--gold) 30%, transparent);
+  --tw-prose-bullets: var(--gold);
+  --tw-prose-counters: var(--gold);
+  font-weight: 300;
+  line-height: 1.85;
+}
+.category-prose h2,
+.category-prose h3,
+.category-prose h4 {
+  font-family: var(--font-arshiya-display), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.category-prose a { text-decoration: underline; text-underline-offset: 3px; }
+.category-prose img { border-radius: 2px; }
+
 /* Journal articles: one look for the admin editor and the public page. */
 .journal-prose {
   --tw-prose-body: oklch(0.26 0.014 62);

@@ -33,16 +33,16 @@ export async function prepareImageForUpload(file: File): Promise<File> {
     }
 }
 
-export async function uploadJournalImage(postId: string, original: File): Promise<UploadedImage> {
+async function uploadTo(endpoint: string, field: string, id: string, original: File): Promise<UploadedImage> {
     const file = await prepareImageForUpload(original);
     if (file.size > 4 * 1024 * 1024) {
         throw new Error("That image is still over 4 MB. Please choose a smaller one.");
     }
     const body = new FormData();
-    body.set("postId", postId);
+    body.set(field, id);
     body.set("file", file);
 
-    const response = await fetch("/admin/journal/upload", { method: "POST", body });
+    const response = await fetch(endpoint, { method: "POST", body });
     const result = (await response.json().catch(() => null)) as
         | ({ ok: true } & UploadedImage)
         | { ok: false; error?: string }
@@ -52,3 +52,6 @@ export async function uploadJournalImage(postId: string, original: File): Promis
     }
     return { key: result.key, url: result.url, width: result.width, height: result.height };
 }
+
+export const uploadJournalImage = (postId: string, file: File) => uploadTo("/admin/journal/upload", "postId", postId, file);
+export const uploadCategoryImage = (categoryId: string, file: File) => uploadTo("/admin/categories/upload", "categoryId", categoryId, file);

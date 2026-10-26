@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { categories } from "@/components/home/categories";
+import { getSiteCategories } from "@/lib/site-categories";
 import { getSitemapPosts } from "@/lib/journal/posts";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -9,6 +9,7 @@ export const revalidate = 3600;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
   // The sitemap must never fail because of the database, so articles are optional here.
+  const categories = await getSiteCategories().catch(() => []);
   const posts = await getSitemapPosts().catch(() => []);
 
   return [

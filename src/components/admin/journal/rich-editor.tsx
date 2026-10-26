@@ -19,7 +19,7 @@ import { UndoToolbar } from "@/components/toolbars/undo";
 import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { starterKit } from "@/lib/journal/extensions";
-import { uploadJournalImage } from "@/lib/journal/client-image";
+import { uploadJournalImage, type UploadedImage } from "@/lib/journal/client-image";
 
 /** The shadcn-tiptap image node, plus the stored size so published pages can reserve space for it. */
 const EditorImage = ImageExtension.extend({
@@ -33,12 +33,15 @@ const EditorImage = ImageExtension.extend({
 });
 
 type RichEditorProps = {
-    postId: string;
+    /** Journal article the images belong to. Not needed when a custom upload function is given. */
+    postId?: string;
+    /** Where pasted or picked images go. Defaults to the Journal upload. */
+    upload?: (file: File) => Promise<UploadedImage>;
     initialContent: JSONContent;
     onChange: (content: JSONContent) => void;
 };
 
-export function RichEditor({ postId, initialContent, onChange }: RichEditorProps) {
+export function RichEditor({ postId, upload, initialContent, onChange }: RichEditorProps) {
     const [uploading, setUploading] = useState(0);
     const [uploadError, setUploadError] = useState("");
     const editorRef = useRef<Editor | null>(null);
@@ -50,7 +53,7 @@ export function RichEditor({ postId, initialContent, onChange }: RichEditorProps
             setUploadError("");
             setUploading((count) => count + 1);
             try {
-                const image = await uploadJournalImage(postId, file);
+                const image = upload ? await upload(file) : await uploadJournalImage(postId ?? "", file);
                 editor
                     .chain()
                     .focus()
@@ -65,7 +68,7 @@ export function RichEditor({ postId, initialContent, onChange }: RichEditorProps
                 setUploading((count) => count - 1);
             }
         },
-        [postId],
+        [postId, upload],
     );
 
     const editor = useEditor({

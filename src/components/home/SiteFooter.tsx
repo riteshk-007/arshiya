@@ -2,17 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { EnquireButton } from "./EnquireButton";
-import { categories } from "./categories";
+import { getSiteCategories } from "@/lib/site-categories";
 
-const footerLinks = [
-    { label: "Home", href: "/" },
-    { label: "House of Arshiya", href: "/about" },
-    ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
-    { label: "Journal", href: "/journal" },
-    { label: "Contact", href: "/contact" },
-];
+export async function SiteFooter() {
+    const categories = await getSiteCategories();
+    const footerLinks = [
+        { label: "Home", href: "/" },
+        { label: "House of Arshiya", href: "/about" },
+        ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
+        { label: "Journal", href: "/journal" },
+        { label: "Contact", href: "/contact" },
+    ];
 
-export function SiteFooter() {
     return (
         <footer className="bg-espresso-deep text-ivory">
             <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-8 lg:px-12 lg:py-20">

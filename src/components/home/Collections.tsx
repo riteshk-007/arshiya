@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
-import { categories } from "./categories";
+import { getSiteCategories } from "@/lib/site-categories";
 
-export function Collections() {
+export async function Collections() {
+    const categories = await getSiteCategories();
     return (
         <section id="our-craft" className="scroll-mt-20 bg-espresso-deep px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
             <div className="mx-auto max-w-[1600px]">
@@ -24,11 +25,12 @@ export function Collections() {
                                 className="group relative block aspect-[3/4] overflow-hidden border border-gold/25 bg-espresso transition-colors duration-500 hover:border-gold/60 xl:aspect-[4/5]"
                             >
                                 <Image
-                                    src={item.image}
+                                    src={item.imageUrl}
                                     alt={item.alt}
                                     fill
                                     sizes="(min-width: 1280px) 25vw, 50vw"
-                                    className={`object-cover transition-transform duration-1000 group-hover:scale-105 ${item.imagePosition}`}
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    style={{ objectPosition: item.imagePosition }}
                                 />
                                 <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/95 via-espresso-deep/10 to-espresso-deep/10" />
                                 <div className="absolute inset-x-0 top-0 h-2/5 bg-linear-to-b from-espresso-deep/85 via-espresso-deep/45 to-transparent" />

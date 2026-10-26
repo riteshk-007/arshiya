@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { EnquireButton } from "@/components/home/EnquireButton";
 import { Icon } from "@/components/home/Icon";
 import { Reveal } from "@/components/home/Reveal";
-import { categories, getCategory } from "@/components/home/categories";
+import { getSiteCategories, getSiteCategory } from "@/lib/site-categories";
 import { JsonLd, breadcrumbs } from "@/components/seo/json-ld";
 import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
@@ -14,22 +14,22 @@ type CategoryPageProps = {
     params: Promise<{ slug: string }>;
 };
 
-export const dynamicParams = false;
+export const revalidate = 600;
 
-export function generateStaticParams() {
-    return categories.map((category) => ({ slug: category.slug }));
+export async function generateStaticParams() {
+    return (await getSiteCategories()).map((category) => ({ slug: category.slug }));
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
     const { slug } = await params;
-    const category = getCategory(slug);
+    const category = await getSiteCategory(slug);
 
     if (!category) {
         return {};
     }
 
     const title = category.seoTitle;
-    const description = `${category.paragraphs[0]} ${category.paragraphs[1]}`;
+    const description = category.description;
 
     return {
         title,
@@ -40,20 +40,20 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
             title: `${title} | ${SITE_NAME}`,
             description,
             url: `/${category.slug}`,
-            images: [{ url: category.image, alt: category.alt }],
+            images: category.imageUrl ? [{ url: category.imageUrl, alt: category.alt }] : undefined,
         },
     };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
     const { slug } = await params;
-    const category = getCategory(slug);
+    const category = await getSiteCategory(slug);
 
     if (!category) {
         notFound();
     }
 
-    const others = categories.filter((item) => item.slug !== category.slug);
+    const others = (await getSiteCategories()).filter((item) => item.slug !== category.slug);
 
     return (
         <>
@@ -69,8 +69,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             "@type": "Service",
                             name: `${category.title} hand embroidery`,
                             serviceType: category.title,
-                            description: category.paragraphs.slice(0, 2).join(" "),
-                            image: absoluteUrl(category.image),
+                            description: category.description,
+                            image: category.imageUrl ? absoluteUrl(category.imageUrl) : undefined,
                             url: absoluteUrl(`/${category.slug}`),
                             provider: { "@id": absoluteUrl("/#organization") },
                             audience: { "@type": "BusinessAudience", name: "Fashion houses and designers" },
@@ -82,12 +82,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <section className="grid lg:min-h-svh lg:grid-cols-2">
                     <div className="relative min-h-[360px] pt-28 sm:min-h-[460px] lg:min-h-svh lg:pt-0">
                         <Image
-                            src={category.image}
+                            src={category.imageUrl}
                             alt={category.alt}
                             fill
                             priority
                             sizes="(min-width: 1024px) 50vw, 100vw"
-                            className={`object-cover ${category.imagePosition}`}
+                            className="object-cover"
+                            style={{ objectPosition: category.imagePosition }}
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/50 via-transparent to-espresso-deep/20" />
                     </div>
@@ -107,12 +108,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             <h1 className="mt-4 font-display text-4xl font-light leading-[1.1] sm:text-5xl">
                                 {category.heading}
                             </h1>
-                            <div className="mt-6 space-y-4 text-sm font-light leading-[1.85] text-ivory/80">
-                                {category.paragraphs.map((paragraph) => (
-                                    <p key={paragraph}>{paragraph}</p>
-                                ))}
-                            </div>
-                            <p className="mt-6 font-display text-xl italic text-gold">{category.note}</p>
+                            <div
+                                className="category-prose prose prose-sm mt-6 max-w-none"
+                                dangerouslySetInnerHTML={{ __html: category.bodyHtml }}
+                            />
+                            {category.note && <p className="mt-6 font-display text-xl italic text-gold">{category.note}</p>}
                             <EnquireButton className="group mt-8 inline-flex min-h-14 items-center gap-4 border border-gold/60 px-8 py-4 text-[10px] uppercase tracking-[0.28em] text-ivory transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-espresso-deep">
                                 {category.ctaLabel}
                                 <ArrowRight
@@ -137,11 +137,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                                     className="group relative block aspect-[16/9] overflow-hidden border border-gold/25 transition-colors hover:border-gold/60"
                                 >
                                     <Image
-                                        src={item.image}
+                                        src={item.imageUrl}
                                         alt={item.alt}
                                         fill
                                         sizes="(min-width: 640px) 33vw, 100vw"
-                                        className={`object-cover transition-transform duration-1000 group-hover:scale-105 ${item.imagePosition}`}
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        style={{ objectPosition: item.imagePosition }}
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/90 via-espresso-deep/20 to-espresso-deep/30" />
                                     <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">

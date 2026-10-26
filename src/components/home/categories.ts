@@ -18,7 +18,8 @@ export type Category = {
     ctaLabel: string;
 };
 
-export const categories: Category[] = [
+/** Built-in defaults. The website uses these only until categories are saved in the admin. */
+export const defaultCategories: Category[] = [
     {
         slug: "haute-couture",
         icon: "couture",
@@ -97,4 +98,3 @@ export const categories: Category[] = [
     },
 ];
 
-export const getCategory = (slug: string) => categories.find((category) => category.slug === slug);

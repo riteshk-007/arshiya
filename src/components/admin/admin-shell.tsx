@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, ChevronDown, Inbox, LayoutDashboard, LogOut, Menu, Settings } from "lucide-react";
+import { BookOpen, ChevronDown, Inbox, LayoutDashboard, Layers, LogOut, Menu, Settings } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +21,7 @@ import { logoutAction } from "@/app/admin/actions";
 const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
     { href: "/admin/enquiries", label: "Enquiries", icon: Inbox, exact: false },
+    { href: "/admin/categories", label: "Categories", icon: Layers, exact: false },
     { href: "/admin/journal", label: "Journal", icon: BookOpen, exact: false },
     { href: "/admin/settings", label: "Settings", icon: Settings, exact: false },
 ];

@@ -7,27 +7,18 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { FirstStitchPopup } from "./FirstStitchPopup";
-import { categories } from "./categories";
 
-const shortLabels: Record<string, string> = {
-    "haute-couture": "Haute Couture",
-    bridal: "Bridal",
-    accessories: "Accessories",
-    "half-scale": "Half-Scale",
-};
+export type NavCategory = { slug: string; navLabel: string };
 
-const navigation = [
-    { label: "Home", href: "/" },
-    { label: "House of Arshiya", href: "/about" },
-    ...categories.map((category) => ({
-        label: shortLabels[category.slug] ?? category.title,
-        href: `/${category.slug}`,
-    })),
-    { label: "Journal", href: "/journal" },
-    { label: "Contact", href: "/contact" },
-];
+export function SiteHeader({ categories }: { categories: NavCategory[] }) {
+    const navigation = [
+        { label: "Home", href: "/" },
+        { label: "House of Arshiya", href: "/about" },
+        ...categories.map((category) => ({ label: category.navLabel, href: `/${category.slug}` })),
+        { label: "Journal", href: "/journal" },
+        { label: "Contact", href: "/contact" },
+    ];
 
-export function SiteHeader() {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
