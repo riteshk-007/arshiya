@@ -9,7 +9,8 @@ import { requireAdmin } from "@/lib/auth";
 import { asDoc, EMPTY_DOC, referencedImageKeys } from "@/lib/journal/content";
 import { prisma } from "@/lib/prisma";
 import { isSameOrigin } from "@/lib/security";
-import { CATEGORY_CACHE_TAG, ICON_NAMES, RESERVED_CATEGORY_SLUGS, defaultCategoryRows } from "@/lib/site-categories";
+import { ICON_NAMES } from "@/lib/category-options";
+import { CATEGORY_CACHE_TAG, RESERVED_CATEGORY_SLUGS, defaultCategoryRows } from "@/lib/site-categories";
 import { deleteObjects, deletePrefix, isStorageConfigured } from "@/lib/storage";
 
 const idSchema = z.uuid();

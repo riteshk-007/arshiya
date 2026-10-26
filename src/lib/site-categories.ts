@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { defaultCategories } from "@/components/home/categories";
 import type { IconName } from "@/components/home/Icon";
 import { asDoc, plainText, renderArticleHtml, type JSONContent } from "@/lib/journal/content";
+import { ICON_NAMES } from "@/lib/category-options";
 import { prisma } from "@/lib/prisma";
 import { publicObjectUrl } from "@/lib/storage";
 
@@ -28,14 +29,6 @@ export type PublicCategory = {
     ctaLabel: string;
 };
 
-export const ICON_NAMES: IconName[] = ["couture", "bridal", "accessories", "half-scale", "sketch", "materials", "sampling", "collaboration"];
-export const IMAGE_POSITIONS = [
-    { value: "center top", label: "Top" },
-    { value: "center 25%", label: "Upper middle" },
-    { value: "center", label: "Middle" },
-    { value: "center 60%", label: "Lower middle" },
-    { value: "center bottom", label: "Bottom" },
-] as const;
 
 /** Slugs that already belong to other pages of the website. */
 export const RESERVED_CATEGORY_SLUGS = new Set([

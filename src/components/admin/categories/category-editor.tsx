@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteCategoryAction, saveCategoryAction } from "@/app/admin/categories/actions";
 import { uploadCategoryImage } from "@/lib/journal/client-image";
-import { ICON_NAMES, IMAGE_POSITIONS } from "@/lib/site-categories";
+import { ICON_NAMES, IMAGE_POSITIONS } from "@/lib/category-options";
 import { cn } from "@/lib/utils";
 
 export type EditableCategory = {
