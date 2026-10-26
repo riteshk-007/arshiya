@@ -1,8 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { CreativeProcess } from "./CreativeProcess";
 import { Reveal } from "./Reveal";
-import { SavoirFaire } from "./SavoirFaire";
 import { images } from "./images";
 
 export function Atelier() {
@@ -47,8 +46,8 @@ export function Atelier() {
                         <p className="mt-7 font-display text-2xl italic text-gold">
                             Forty Artisans. Countless Stitches. Infinite Possibilities.
                         </p>
-                        <a
-                            href="#creative-process"
+                        <Link
+                            href="/#creative-process"
                             className="group mt-8 inline-flex items-center gap-3 border-b border-gold/50 pb-2 text-[10px] uppercase tracking-[0.25em] transition-colors hover:text-gold"
                         >
                             Explore Our Creative Process
@@ -56,12 +55,10 @@ export function Atelier() {
                                 className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
                                 strokeWidth={1.25}
                             />
-                        </a>
+                        </Link>
                     </Reveal>
                 </div>
             </div>
-            <CreativeProcess />
-            <SavoirFaire />
         </section>
     );
 }

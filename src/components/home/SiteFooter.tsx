@@ -6,7 +6,9 @@ import { categories } from "./categories";
 
 const footerLinks = [
     { label: "Home", href: "/" },
+    { label: "House of Arshiya", href: "/about" },
     ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
+    { label: "Contact", href: "/contact" },
 ];
 
 export function SiteFooter() {

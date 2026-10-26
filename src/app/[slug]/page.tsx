@@ -6,8 +6,6 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { EnquireButton } from "@/components/home/EnquireButton";
 import { Icon } from "@/components/home/Icon";
 import { Reveal } from "@/components/home/Reveal";
-import { SiteFooter } from "@/components/home/SiteFooter";
-import { SiteHeader } from "@/components/home/SiteHeader";
 import { categories, getCategory } from "@/components/home/categories";
 
 type CategoryPageProps = {
@@ -44,7 +42,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
     return (
         <>
-            <SiteHeader />
             <main className="bg-espresso-deep text-ivory">
                 <section className="grid lg:min-h-svh lg:grid-cols-2">
                     <div className="relative min-h-[360px] pt-28 sm:min-h-[460px] lg:min-h-svh lg:pt-0">
@@ -126,7 +123,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     </div>
                 </section>
             </main>
-            <SiteFooter />
         </>
     );
 }

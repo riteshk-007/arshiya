@@ -9,9 +9,21 @@ import { Menu, X } from "lucide-react";
 import { FirstStitchPopup } from "./FirstStitchPopup";
 import { categories } from "./categories";
 
+const shortLabels: Record<string, string> = {
+    "haute-couture": "Haute Couture",
+    bridal: "Bridal",
+    accessories: "Accessories",
+    "half-scale": "Half-Scale",
+};
+
 const navigation = [
     { label: "Home", href: "/" },
-    ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
+    { label: "House of Arshiya", href: "/about" },
+    ...categories.map((category) => ({
+        label: shortLabels[category.slug] ?? category.title,
+        href: `/${category.slug}`,
+    })),
+    { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
@@ -58,14 +70,11 @@ export function SiteHeader() {
                             priority
                             className="mx-auto h-[68px] w-auto object-contain sm:h-[84px]"
                         />
-                        <span className="mt-1 block whitespace-nowrap text-center font-display text-[8px] uppercase tracking-[0.28em] text-gold sm:text-[10px] sm:tracking-[0.36em]">
-                            Fashion is a work of art
-                        </span>
                     </Link>
 
                     <nav
                         aria-label="Primary"
-                        className="hidden min-w-0 flex-1 items-center justify-end gap-x-6 lg:flex 2xl:gap-x-9"
+                        className="hidden min-w-0 flex-1 items-center justify-end gap-x-5 xl:flex 2xl:gap-x-9"
                     >
                         {navigation.map((item) => {
                             const active = pathname === item.href;
@@ -97,7 +106,7 @@ export function SiteHeader() {
                         </button>
                     </nav>
 
-                    <div className="ml-auto flex shrink-0 items-center gap-3 lg:hidden">
+                    <div className="ml-auto flex shrink-0 items-center gap-3 xl:hidden">
                         <button
                             type="button"
                             onClick={openEnquiry}

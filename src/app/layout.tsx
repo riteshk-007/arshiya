@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import { EntryPopup } from "@/components/home/EntryPopup";
+import { SiteFooter } from "@/components/home/SiteFooter";
+import { SiteHeader } from "@/components/home/SiteHeader";
 import "./globals.css";
 
 const displayFont = Cormorant_Garamond({
@@ -15,7 +18,7 @@ const sansFont = Inter({
   weight: ["300", "400", "500", "600"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arshiya.uk";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arshiya.uk";
 const siteTitle = "House of Arshiya | Haute Couture Hand Embroidery";
 const siteDescription =
   "An independent hand-embroidery atelier collaborating with international fashion houses and designers.";
@@ -46,7 +49,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${sansFont.variable} antialiased`}>
+        <SiteHeader />
         {children}
+        <SiteFooter />
+        <EntryPopup />
       </body>
     </html>
   );
