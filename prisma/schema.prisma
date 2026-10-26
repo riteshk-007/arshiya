@@ -1,0 +1,180 @@
+// House of Arshiya: enquiries and admin.
+// Change this file, then run `npm run db:push` (and `npx prisma generate`).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EnquiryStatus {
+  NEW         @map("new")
+  IN_PROGRESS @map("in_progress")
+  REPLIED     @map("replied")
+  CLOSED      @map("closed")
+  SPAM        @map("spam")
+
+  @@map("enquiry_status")
+}
+
+enum PostStatus {
+  DRAFT     @map("draft")
+  PUBLISHED @map("published")
+
+  @@map("post_status")
+}
+
+enum EnquirySource {
+  POPUP   @map("popup")
+  CONTACT @map("contact")
+
+  @@map("enquiry_source")
+}
+
+model AdminUser {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username       String         @unique
+  passwordHash   String         @map("password_hash")
+  failedAttempts Int            @default(0) @map("failed_attempts")
+  lockedUntil    DateTime?      @map("locked_until") @db.Timestamptz(6)
+  lastLoginAt    DateTime?      @map("last_login_at") @db.Timestamptz(6)
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  sessions       AdminSession[]
+
+  @@map("admin_users")
+}
+
+/// Opaque session tokens: only the SHA-256 hash is stored, so a database leak cannot be replayed.
+model AdminSession {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  tokenHash  String    @unique @map("token_hash")
+  ipHash     String?   @map("ip_hash")
+  userAgent  String?   @map("user_agent")
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastSeenAt DateTime  @default(now()) @map("last_seen_at") @db.Timestamptz(6)
+  expiresAt  DateTime  @map("expires_at") @db.Timestamptz(6)
+  user       AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("admin_sessions")
+}
+
+model LoginAttempt {
+  id        BigInt   @id @default(autoincrement())
+  ipHash    String   @map("ip_hash")
+  username  String?
+  success   Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([ipHash, createdAt(sort: Desc)])
+  @@map("login_attempts")
+}
+
+model Enquiry {
+  id          String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// Human-friendly number, shown as ARS-00042.
+  seq         BigInt        @unique @default(autoincrement())
+  name        String
+  company     String?
+  email       String
+  country     String?
+  enquiryType String?       @map("enquiry_type")
+  timeline    String?
+  brief       String        @db.Text
+  source      EnquirySource @default(POPUP)
+  page        String?
+  status      EnquiryStatus @default(NEW)
+  ipHash      String?       @map("ip_hash")
+  userAgent   String?       @map("user_agent")
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  files       EnquiryFile[]
+  notes       EnquiryNote[]
+
+  @@index([status, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+  @@index([enquiryType, createdAt(sort: Desc)])
+  @@index([source, createdAt(sort: Desc)])
+  @@index([email])
+  @@index([ipHash, createdAt(sort: Desc)])
+  @@map("enquiries")
+}
+
+/// Attachments live in Cloudflare R2. The database keeps only where they are, never the bytes.
+model EnquiryFile {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiryId   String   @map("enquiry_id") @db.Uuid
+  /// Name the visitor's file had, shown in the admin.
+  filename    String
+  /// Unique object key in the bucket, e.g. enquiries/ARS-00042/20261026-a1b2c3d4-gown-sketch.png
+  storageKey  String   @unique @map("storage_key")
+  contentType String   @map("content_type")
+  sizeBytes   Int      @map("size_bytes")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  enquiry     Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId])
+  @@map("enquiry_files")
+}
+
+model EnquiryNote {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiryId String   @map("enquiry_id") @db.Uuid
+  author    String
+  body      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  enquiry   Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId, createdAt(sort: Desc)])
+  @@map("enquiry_notes")
+}
+
+/// A Journal article. The body is Tiptap JSON; images live in the public R2 bucket.
+model Post {
+  id             String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// URL part: /journal/<slug>
+  slug           String      @unique
+  title          String
+  /// Short summary shown on cards and used as the search-result description.
+  excerpt        String
+  content        Json
+  category       String?
+  coverKey       String?     @map("cover_key")
+  coverWidth     Int?        @map("cover_width")
+  coverHeight    Int?        @map("cover_height")
+  coverAlt       String?     @map("cover_alt")
+  seoTitle       String?     @map("seo_title")
+  seoDescription String?     @map("seo_description")
+  authorName     String      @default("House of Arshiya") @map("author_name")
+  readingMinutes Int         @default(1) @map("reading_minutes")
+  status         PostStatus  @default(DRAFT)
+  publishedAt    DateTime?   @map("published_at") @db.Timestamptz(6)
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  images         PostImage[]
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([category])
+  @@index([updatedAt(sort: Desc)])
+  @@map("posts")
+}
+
+/// Every image uploaded for a post (cover and inline), so they can be cleaned up from R2.
+model PostImage {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  postId     String   @map("post_id") @db.Uuid
+  storageKey String   @unique @map("storage_key")
+  width      Int
+  height     Int
+  sizeBytes  Int      @map("size_bytes")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@map("post_images")
+}

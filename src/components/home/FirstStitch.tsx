@@ -74,7 +74,7 @@ export function FirstStitch() {
                             </ol>
 
                             <p className="mt-7 font-display text-2xl italic text-gold-antique">
-                                Your Vision. Our First Stitch.
+                                Get your Free Swatch Developed.
                             </p>
                             <p className="mt-3 text-xs font-light leading-relaxed text-espresso/70">
                                 Complimentary introductory samples may be considered following a review of

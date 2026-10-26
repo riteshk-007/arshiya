@@ -7,10 +7,14 @@ import { EnquireButton } from "@/components/home/EnquireButton";
 import { Icon } from "@/components/home/Icon";
 import { Reveal } from "@/components/home/Reveal";
 import { categories, getCategory } from "@/components/home/categories";
+import { JsonLd, breadcrumbs } from "@/components/seo/json-ld";
+import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 type CategoryPageProps = {
     params: Promise<{ slug: string }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
     return categories.map((category) => ({ slug: category.slug }));
@@ -24,9 +28,20 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         return {};
     }
 
+    const title = category.seoTitle;
+    const description = `${category.paragraphs[0]} ${category.paragraphs[1]}`;
+
     return {
-        title: `${category.title} | House of Arshiya`,
-        description: category.paragraphs[0],
+        title,
+        description,
+        alternates: { canonical: `/${category.slug}` },
+        openGraph: {
+            type: "website",
+            title: `${title} | ${SITE_NAME}`,
+            description,
+            url: `/${category.slug}`,
+            images: [{ url: category.image, alt: category.alt }],
+        },
     };
 }
 
@@ -42,6 +57,27 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
     return (
         <>
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        breadcrumbs([
+                            { name: "Home", url: absoluteUrl("/") },
+                            { name: category.title, url: absoluteUrl(`/${category.slug}`) },
+                        ]),
+                        {
+                            "@type": "Service",
+                            name: `${category.title} hand embroidery`,
+                            serviceType: category.title,
+                            description: category.paragraphs.slice(0, 2).join(" "),
+                            image: absoluteUrl(category.image),
+                            url: absoluteUrl(`/${category.slug}`),
+                            provider: { "@id": absoluteUrl("/#organization") },
+                            audience: { "@type": "BusinessAudience", name: "Fashion houses and designers" },
+                        },
+                    ],
+                }}
+            />
             <main className="bg-espresso-deep text-ivory">
                 <section className="grid lg:min-h-svh lg:grid-cols-2">
                     <div className="relative min-h-[360px] pt-28 sm:min-h-[460px] lg:min-h-svh lg:pt-0">

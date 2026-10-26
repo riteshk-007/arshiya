@@ -4,9 +4,11 @@ import { EnquiryForm } from "@/components/home/EnquiryForm";
 import { Reveal } from "@/components/home/Reveal";
 
 export const metadata: Metadata = {
-    title: "Contact | House of Arshiya",
+    title: "Contact",
     description:
         "Share a developed concept, an early sketch or an idea waiting to be explored with the House of Arshiya atelier.",
+    alternates: { canonical: "/contact" },
+    openGraph: { type: "website", url: "/contact", title: "Contact House of Arshiya" },
 };
 
 const linkClass =
@@ -77,7 +79,7 @@ export default function ContactPage() {
                             <p className="mb-6 mt-2 text-[13px] font-light leading-relaxed text-ivory/75">
                                 Tell us about your project and we will come back to you.
                             </p>
-                            <EnquiryForm />
+                            <EnquiryForm source="contact" />
                         </div>
                     </Reveal>
                 </div>

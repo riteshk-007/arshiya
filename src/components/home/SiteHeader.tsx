@@ -23,6 +23,7 @@ const navigation = [
         label: shortLabels[category.slug] ?? category.title,
         href: `/${category.slug}`,
     })),
+    { label: "Journal", href: "/journal" },
     { label: "Contact", href: "/contact" },
 ];
 

@@ -6,9 +6,11 @@ import { EnquireButton } from "@/components/home/EnquireButton";
 import { Philosophy } from "@/components/home/Philosophy";
 
 export const metadata: Metadata = {
-    title: "House of Arshiya | About Us",
+    title: "About House of Arshiya",
     description:
-        "An independent hand-embroidery atelier collaborating with international fashion houses and designers.",
+        "Meet House of Arshiya: an independent hand-embroidery atelier of skilled artisans collaborating with international fashion houses and designers.",
+    alternates: { canonical: "/about" },
+    openGraph: { type: "website", url: "/about", title: "About House of Arshiya" },
 };
 
 export default function AboutPage() {

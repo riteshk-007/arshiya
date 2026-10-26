@@ -72,14 +72,14 @@ export function FirstStitchPopup({ onClose }: FirstStitchProps) {
                         The First Stitch
                     </h2>
                     <p className="mt-1 font-display text-xl italic text-gold">
-                        Your Vision. Our First Stitch.
+                        Get your Free Swatch Developed.
                     </p>
                     <p className="mb-5 mt-3 text-[13px] font-light leading-relaxed text-ivory/75">
                         Share a sketch, reference or early idea. We welcome selected introductory
                         sampling enquiries from fashion houses and designers.
                     </p>
 
-                    <EnquiryForm />
+                    <EnquiryForm source="popup" />
                 </div>
             </div>
         </dialog>

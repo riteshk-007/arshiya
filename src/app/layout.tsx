@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
-import { EntryPopup } from "@/components/home/EntryPopup";
-import { SiteFooter } from "@/components/home/SiteFooter";
-import { SiteHeader } from "@/components/home/SiteHeader";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const displayFont = Cormorant_Garamond({
@@ -18,27 +16,37 @@ const sansFont = Inter({
   weight: ["300", "400", "500", "600"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arshiya.uk";
-const siteTitle = "House of Arshiya | Haute Couture Hand Embroidery";
-const siteDescription =
-  "An independent hand-embroidery atelier collaborating with international fashion houses and designers.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: siteTitle,
-  description: siteDescription,
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s | ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: SITE_KEYWORDS,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     type: "website",
-    siteName: "House of Arshiya",
-    title: siteTitle,
-    description: siteDescription,
+    locale: "en_GB",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#181513",
 };
 
 export default function RootLayout({
@@ -49,10 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${sansFont.variable} antialiased`}>
-        <SiteHeader />
         {children}
-        <SiteFooter />
-        <EntryPopup />
       </body>
     </html>
   );

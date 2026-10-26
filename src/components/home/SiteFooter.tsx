@@ -8,6 +8,7 @@ const footerLinks = [
     { label: "Home", href: "/" },
     { label: "House of Arshiya", href: "/about" },
     ...categories.map((category) => ({ label: category.title, href: `/${category.slug}` })),
+    { label: "Journal", href: "/journal" },
     { label: "Contact", href: "/contact" },
 ];
 
@@ -73,7 +74,7 @@ export function SiteFooter() {
                             Instagram · @arshiya.uk
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </a>
-                        <EnquireButton className="mx-auto mt-8 inline-flex min-h-11 items-center justify-center gap-3 border border-gold/45 px-5 text-[9px] uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-espresso-deep sm:mx-0">
+                        <EnquireButton className="mx-auto mt-8 flex w-fit min-h-11 items-center justify-center gap-3 border border-gold/45 px-5 text-[9px] uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-espresso-deep sm:mx-0">
                             Contact the Atelier
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </EnquireButton>

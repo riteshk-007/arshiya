@@ -4,6 +4,8 @@ export type Category = {
     slug: string;
     icon: IconName;
     title: string;
+    /** Page title for search results, e.g. "Bridal Embroidery". */
+    seoTitle: string;
     /** Short line shown on the home page card. */
     summary: string;
     /** Image used on the home card and as the category page hero. */
@@ -21,6 +23,7 @@ export const categories: Category[] = [
         slug: "haute-couture",
         icon: "couture",
         title: "Haute Couture",
+        seoTitle: "Haute Couture Hand Embroidery",
         summary: "An expression of extraordinary craftsmanship.",
         image: "/photo-pearls-detail.jpg",
         imagePosition: "object-center",
@@ -39,6 +42,7 @@ export const categories: Category[] = [
         slug: "bridal",
         icon: "bridal",
         title: "Bridal Embroidery",
+        seoTitle: "Bridal Hand Embroidery",
         summary: "The poetry of detail.",
         image: "/photo-bride-peonies-veil.jpg",
         imagePosition: "object-[center_55%]",
@@ -57,6 +61,7 @@ export const categories: Category[] = [
         slug: "accessories",
         icon: "accessories",
         title: "Couture Accessories",
+        seoTitle: "Embroidered Couture Accessories",
         summary: "Artistry beyond the garment.",
         image: "/photo-accessories-jewelry.jpg",
         imagePosition: "object-center",
@@ -75,6 +80,7 @@ export const categories: Category[] = [
         slug: "half-scale",
         icon: "half-scale",
         title: "Half-Scale Exploration",
+        seoTitle: "Half-Scale Couture Exploration",
         summary: "Where ideas take form.",
         image: "/photo-embroidery-hands.jpg",
         imagePosition: "object-center",
