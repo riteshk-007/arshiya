@@ -72,6 +72,8 @@ export function RichEditor({ postId, initialContent, onChange }: RichEditorProps
         extensions: [starterKit, EditorImage],
         content: initialContent,
         immediatelyRender: false,
+        // Toolbar buttons (heading, bold, lists) must show the state of the text under the cursor.
+        shouldRerenderOnTransaction: true,
         editorProps: {
             attributes: {
                 class: "journal-prose prose max-w-none min-h-[420px] px-4 py-5 sm:px-6 focus:outline-none [&_img]:max-w-full",

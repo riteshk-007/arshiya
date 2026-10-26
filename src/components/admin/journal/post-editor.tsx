@@ -74,6 +74,7 @@ export function PostEditor({ post, siteUrl, categories, storageReady }: PostEdit
     const [slugTouched, setSlugTouched] = useState(!post.slug.startsWith("untitled-"));
     const [excerpt, setExcerpt] = useState(post.excerpt);
     const [category, setCategory] = useState(post.category);
+    const [newCategory, setNewCategory] = useState("");
     const [cover, setCover] = useState({ key: post.coverKey, url: post.coverUrl });
     const [coverAlt, setCoverAlt] = useState(post.coverAlt);
     const [coverBusy, setCoverBusy] = useState(false);
@@ -409,7 +410,7 @@ export function PostEditor({ post, siteUrl, categories, storageReady }: PostEdit
                         </CardHeader>
                         <CardContent>
                             <div className="flex flex-wrap gap-2">
-                                {[...new Set([...PRESET_CATEGORIES, ...categories.flatMap((item) => item.split(",").map((part) => part.trim()))])]
+                                {[...new Set([...PRESET_CATEGORIES, ...categories.flatMap((item) => item.split(",").map((part) => part.trim())), ...category.split(",").map((part) => part.trim())])]
                                     .filter(Boolean)
                                     .map((item) => {
                                         const selected = category.split(",").map((part) => part.trim()).includes(item);
@@ -424,14 +425,32 @@ export function PostEditor({ post, siteUrl, categories, storageReady }: PostEdit
                                                     setCategory(next.join(", ").slice(0, 120));
                                                     touch();
                                                 }}
-                                                className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${selected ? "border-foreground bg-foreground text-background" : "hover:bg-muted"}`}
+                                                className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${selected ? "border-foreground bg-foreground text-background" : "border-input bg-background text-foreground hover:bg-muted"}`}
                                             >
+                                                {selected && <Check className="mr-1 inline h-3.5 w-3.5" />}
                                                 {item}
                                             </button>
                                         );
                                     })}
                             </div>
-                            <p className="mt-3 text-xs text-muted-foreground">Tap to select one or more. The first one is the main category.</p>
+                            <form
+                                className="mt-4 flex gap-2"
+                                onSubmit={(event) => {
+                                    event.preventDefault();
+                                    const name = newCategory.trim().replace(/[,]+/g, " ").slice(0, 40);
+                                    if (!name) return;
+                                    const current = category.split(",").map((part) => part.trim()).filter(Boolean);
+                                    if (!current.some((part) => part.toLowerCase() === name.toLowerCase())) {
+                                        setCategory([...current, name].join(", ").slice(0, 120));
+                                        touch();
+                                    }
+                                    setNewCategory("");
+                                }}
+                            >
+                                <Input value={newCategory} onChange={(event) => setNewCategory(event.target.value)} maxLength={40} placeholder="New category name" aria-label="New category name" />
+                                <Button type="submit" variant="outline">Add</Button>
+                            </form>
+                            <p className="mt-3 text-xs text-muted-foreground">Tap to select or unselect. The first selected one is the main category. A new category you add is saved with the article and then appears for every article.</p>
                         </CardContent>
                     </Card>
 
