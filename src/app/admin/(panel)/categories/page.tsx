@@ -31,11 +31,11 @@ export default async function CategoriesAdminPage() {
                 </form>
             </div>
 
-            {rows.length === 0 ? (
+            {rows.every((row) => !row.active) ? (
                 <Card>
                     <CardContent className="space-y-4 py-10 text-center">
                         <p className="text-sm text-muted-foreground">
-                            Nothing is saved here yet, so the website is showing its four built-in categories (Haute Couture, Bridal, Couture Accessories and Half-Scale).
+                            No category is switched on yet, so the website is showing its four built-in categories (Haute Couture, Bridal, Couture Accessories and Half-Scale).
                             Load them to start editing them here.
                         </p>
                         <form action={loadDefaultCategoriesAction}>
@@ -43,7 +43,8 @@ export default async function CategoriesAdminPage() {
                         </form>
                     </CardContent>
                 </Card>
-            ) : (
+            ) : null}
+            {rows.length > 0 && (
                 <ul className="space-y-3">
                     {rows.map((row) => {
                         const image = categoryImageUrl(row.imageSrc);

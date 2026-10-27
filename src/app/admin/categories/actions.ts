@@ -35,13 +35,12 @@ function refreshPublicPages(...slugs: (string | null | undefined)[]) {
 /** Whether a stored image is one of our own uploads (a bucket key) and not a file shipped with the site. */
 const isBucketKey = (value: string | null | undefined): value is string => Boolean(value) && !value!.startsWith("/");
 
-/** Adds the four original categories, so an admin can start from them. Does nothing if any exist. */
+/** Adds the four original categories, so an admin can start from them. Skips any that already exist. */
 export async function loadDefaultCategoriesAction() {
     await assertSameOrigin();
     await requireAdmin();
-    if ((await prisma.siteCategory.count()) === 0) {
-        await prisma.siteCategory.createMany({ data: defaultCategoryRows() });
-    }
+    // Slugs that already exist are skipped, so this is safe to press twice.
+    await prisma.siteCategory.createMany({ data: defaultCategoryRows(), skipDuplicates: true });
     refreshPublicPages();
     redirect("/admin/categories");
 }

@@ -100,8 +100,8 @@ async function loadCategories(): Promise<PublicCategory[]> {
         console.error("[categories] Could not read categories, showing the defaults:", error instanceof Error ? error.message : error);
         return fallbackCategories();
     }
-    // Nothing saved yet (or none switched on): keep the original four so the site is never empty.
-    if (rows.length === 0 && (await prisma.siteCategory.count().catch(() => 0)) === 0) {
+    // Nothing switched on yet (empty, or only hidden drafts): keep the original four so the site is never empty.
+    if (rows.length === 0) {
         return fallbackCategories();
     }
 
