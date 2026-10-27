@@ -1,5 +1,6 @@
 import { EntryPopup } from "@/components/home/EntryPopup";
 import { SiteFooter } from "@/components/home/SiteFooter";
+import { TranslateLoader } from "@/components/home/TranslateLoader";
 import { SiteHeader } from "@/components/home/SiteHeader";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getSiteCategories } from "@/lib/site-categories";
@@ -39,6 +40,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       {children}
       <SiteFooter />
       <EntryPopup />
+      <TranslateLoader />
     </>
   );
 }

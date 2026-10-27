@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo";
+import Script from "next/script";
 import "./globals.css";
 
 const displayFont = Cormorant_Garamond({
@@ -56,6 +57,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/*
+          Google Translate wraps text in new elements, which makes React fail with "removeChild ... not a child".
+          For visitors who chose a language, these two calls are made forgiving before React starts.
+        */}
+        <Script id="translate-dom-guard" strategy="beforeInteractive">{`
+          try {
+            var saved = localStorage.getItem("arshiya-language");
+            if (saved && saved !== "en" && !/(?:^|; )googtrans=/.test(document.cookie)) {
+              document.cookie = "googtrans=/en/" + saved + "; path=/; max-age=31536000; samesite=lax";
+            }
+          } catch (e) {}
+          if (/(?:^|; )googtrans=\\/[^;]+/.test(document.cookie)) {
+            var remove = Node.prototype.removeChild;
+            Node.prototype.removeChild = function (child) {
+              if (child.parentNode !== this) return child;
+              return remove.apply(this, arguments);
+            };
+            var insert = Node.prototype.insertBefore;
+            Node.prototype.insertBefore = function (node, ref) {
+              if (ref && ref.parentNode !== this) return node;
+              return insert.apply(this, arguments);
+            };
+          }
+        `}</Script>
+      </head>
       <body className={`${displayFont.variable} ${sansFont.variable} antialiased`}>
         {children}
       </body>

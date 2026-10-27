@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { FirstStitchPopup } from "./FirstStitchPopup";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export type NavCategory = { slug: string; navLabel: string };
 
@@ -89,6 +90,7 @@ export function SiteHeader({ categories }: { categories: NavCategory[] }) {
                                 </Link>
                             );
                         })}
+                        <LanguageSwitcher />
                         <button
                             type="button"
                             onClick={openEnquiry}
@@ -167,6 +169,7 @@ export function SiteHeader({ categories }: { categories: NavCategory[] }) {
                                     </Link>
                                 </motion.div>
                             ))}
+                            <LanguageSwitcher variant="list" />
                             <button
                                 type="button"
                                 onClick={openEnquiry}
