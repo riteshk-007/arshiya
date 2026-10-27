@@ -6,23 +6,60 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { EnquireButton } from "./EnquireButton";
 
-const slides = [
+const allSlides: { src: string; alt: string; position: string; original?: boolean }[] = [
     {
         src: "/photo-bride-peonies-veil.jpg",
+        original: true,
         alt: "Bride in profile wearing a beaded lace gown and pearl headpiece",
         position: "object-[center_30%]",
     },
     {
+        src: "/photo-embroidery-gold-beads.jpg",
+        alt: "Close-up of gold bead and red thread embroidery with turquoise sequins",
+        position: "object-center",
+    },
+    {
+        src: "/photo-embroidery-crystals.jpg",
+        alt: "Close-up of hand-set crystals on couture embroidery",
+        position: "object-center",
+    },
+    {
         src: "/photo-bride-sunrays-veil.jpg",
+        original: true,
         alt: "Bride framed by a sweeping tulle veil against a dark wall",
         position: "object-[58%_center]",
     },
     {
+        src: "/photo-embroidery-teal-sequins.jpg",
+        alt: "Close-up of teal sequin and bead embroidery in a flowing pattern",
+        position: "object-center",
+    },
+    {
+        src: "/photo-embroidery-black-beads.jpg",
+        alt: "Close-up of black beads and pearls embroidered in rows",
+        position: "object-center",
+    },
+    {
         src: "/photo-pearls-detail.jpg",
+        original: true,
         alt: "Hand-placed pearls and beadwork on a bridal gown",
         position: "object-[center_40%]",
     },
+    {
+        src: "/photo-embroidery-red-sequins.jpg",
+        alt: "Close-up of red sequin embroidery",
+        position: "object-center",
+    },
+    {
+        src: "/photo-embroidery-beaded-trim.jpg",
+        alt: "Close-up of beaded trim in black, silver and crystal",
+        position: "object-center",
+    },
 ];
+
+/** The original bride photos are hidden while the client reviews the new embroidery close-ups. Set to true to bring them back. */
+const SHOW_ORIGINAL_SLIDES = false;
+const slides = allSlides.filter((slide) => SHOW_ORIGINAL_SLIDES || !slide.original);
 
 const SLIDE_INTERVAL_MS = 6500;
 const ease = [0.22, 1, 0.36, 1] as const;
