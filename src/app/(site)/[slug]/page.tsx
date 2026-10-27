@@ -101,7 +101,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             >
                                 ← All categories
                             </Link>
-                            <Icon name={category.icon} className="mt-8 block h-12 w-12 text-gold" />
+                            <div className="mt-8 flex">
+                                <Icon name={category.icon} className="h-12 w-12 text-gold" />
+                            </div>
                             <p className="mt-5 text-[10px] uppercase tracking-[0.4em] text-gold">
                                 {category.title}
                             </p>
